@@ -1,0 +1,22 @@
+<div direc></div> 
+<h1><a href="#/">返回首页</a></h1>
+<div ng-repeat="item in cart">
+              <p id="p-1">特色早餐{{}}</p>
+             <img ng-src="{{item.image}}" id="img-1">
+             <ul style="background: #fff">
+
+			<li>{{item.name}}</li>
+			<li>咸粥</li>
+			<li>月售份 好评率{{item.good}}</li>
+			<li id="li-1"><span>{{item.price|currency:"￥"}}</span><span>&nbsp&nbsp{{item.yuanjia|currency:"￥"}}</span>
+			<div id="numenber">
+				<img src="./image/矢量智能对象.png" ng-click="add(item.goodsId,true)" ng-click="setIcol(event)">
+				 <button style="width:80px;height:30px;background:red;" ng-click="item.num=0">删除</button>
+			</div>
+			
+			</li>
+		  </ul>
+		  </div>
+<!-- <script type="text/javascript">
+	console.log(item)
+</script>

@@ -1,0 +1,133 @@
+ <div direc></div>
+	
+	<div class="header">
+		<a href="../饿了吗/index.html"><div class="header-1"> 点我</div></a>
+		<div class="header-2">
+			<div class="header-2-1">品牌</div><p>粥品香坊(大运村)</p>
+			<div class="header-2-2">蜂鸟专送/30分钟到达</div>
+			<div class="header-2-3">减</div><p id="p">在线支付满28减5，满50减10</p>
+			<div class="header-2-4">5个</div>
+		</div>
+		<!-- 公告栏 -->
+		<div class="header-3">
+			<div class="header-3-1">公告</div>
+			<p>粥品香坊其烹饪粥料的秘方源于中国千年古法，再融和现代... ></p>
+		</div>
+	</div>
+
+
+		<!-- 导航栏 -->
+
+ <div class="tabs" id="nav"> 
+       <a href="#" class="active">商品</a> <a href="#">评价</a> <a href="#">商家</a> 
+ </div>
+ 
+  <div id="tabs-container" class="swiper-container swiper-container-horizontal">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide swiper-slide-active" >
+        <div class="content-one">
+                <!--    左边滑屏-->
+            <div class="swiper-container content-one-fl" id="slide1">
+       
+              <ul class="swiper-wrapper" id="ullist">
+                <li class="swiper-slide active">
+                  热销版
+                 </li>
+                <li class="swiper-slide">
+                  单人套餐
+                 </li>
+                 <li class="swiper-slide">
+                  特色粥品
+                 </li>
+                  <li class="swiper-slide">
+                  精选热菜
+                 </li>
+                  <li class="swiper-slide">
+                  爽口凉菜
+                 </li>
+                  <li class="swiper-slide">
+                  半成品
+                 </li>
+                  <li class="swiper-slide">
+                  饭类
+                 </li>
+                  <li class="swiper-slide">
+                  面类
+                 </li>                            
+                  </ul>
+
+             </div>
+
+
+    <!--    右边滑屏-->
+    <div class="swiper-container content-one-fr" id="slide2">
+       
+          <div class="swiper-wrapper">
+            <div class="swiper-slide page" >
+           <div ng-repeat="item in data">
+              <p id="p-1">特色早餐</p>
+             <img ng-src="{{item.image}}" id="img-1">
+             <ul style="background: #fff">
+
+			<li>{{item.name}}</li>
+			<li>咸粥</li>
+			<li>月售{{item.sell}}份 好评率{{item.good}}</li>
+			<li id="li-1"><span>{{item.price|currency:"￥"}}</span><span>&nbsp&nbsp{{item.yuanjia|currency:"￥"}}</span>
+			<div id="numenber">
+				<img src="./image/矢量智能对象.png" ng-click="add(item.goodsId,true)" ng-click="setIcol(event)">
+			</div>
+			</li>
+		  </ul>
+		  </div>
+       </div>
+            <div class="swiper-slide page">
+            <h1>颠三倒四多</h1>
+             </div>
+             <div class="swiper-slide page">
+                <h1>我我导航333</h1>
+             </div>
+              <div class="swiper-slide page">
+                <h1>我我导航444</h1>
+             </div>
+              <div class="swiper-slide page">
+                <h1>我我导航555</h1>
+             </div>
+              <div class="swiper-slide page">
+                <h1>我我导航666</h1>
+             </div>
+              <div class="swiper-slide page">
+                <h1>我我导航777</h1>
+             </div>
+              <div class="swiper-slide page">
+                <h1>我我导航888</h1>
+             </div>
+           
+             
+        </div>
+
+    </div>
+ 
+        </div>
+      </div>
+      <div class="swiper-slide swiper-slide-next" style="background: red;">
+      南大街啥都好说撒旦
+      </div>
+     <div class="swiper-slide" style="background: yellow">
+       按时间达克赛德吗
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- 脚部 -->
+  <div class="footer">
+     <div class="footer-left" id="end">{{cc}}</div>
+     <div class="footer-mid"><span>总价:{{sum|currency:'￥'}}</span></div>
+     <div class="footer-right" >
+     <div id="xuan">未选购商品</div>
+
+     <a href="#/cart" style="color: white" id="jiesua">去结算</a>
+     </div>
+  	
+  </div>
+
