@@ -2,7 +2,7 @@
 	var docEl=doc.documentElement;
 	var run=function(){
 		var clientWidth=docEl.clientWidth;
-		console.log(clientWidth);
+		// console.log(clientWidth);
 		if(!clientWidth)return;
 		docEl.style.fontSize=20/320*clientWidth+"px";
 	} 

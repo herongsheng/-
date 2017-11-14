@@ -1,67 +1,142 @@
-// var jiesua=document.getElementById('end');
-
+console.log($("#end"))
 
 var app=angular.module("myapp",['ngRoute'],RouteConfig);
   function RouteConfig($routeProvider){
       // $routeProvider固定写法,路由提供者
       $routeProvider
         .when('/',{
-          templateUrl:"tpl/sp.html"
+          templateUrl:"./tpl/sp.html"
           // 你就把这个页面想象成,就在一个页面里面写
         })
         .when('/cart',{
-          templateUrl:"tpl/cart.html"
+          templateUrl:"./tpl/cart.html"
         })
     }
 // 控制器
     app.controller("cont",function($scope){
-
       $scope.data=[
-      {goodsId:"101010","image":"./image/nangua.png",name:"皮蛋廋肉粥配包子",sell:"1123",good:"100%",price:"19",yuanjia:"26",num:"0",disbool:true},
-      {goodsId:"101011","image":"./image/图层-5.png",name:"链子黑桃黑米粥",sell:"1123",good:"80%",price:"32",yuanjia:"46",num:"0",disbool:true},
-      {goodsId:"101012","image":"./image/图层-3.png",name:"雪梨银耳百合粥",sell:"1123",good:"90%",price:"20",yuanjia:"30",num:"0",disbool:true},
-      {goodsId:"101013","image":"./image/nangua.png",name:"南瓜粥",sell:"1123",good:"70%",price:"17",yuanjia:"20",num:"0",disbool:true},
+      {goodsId:"101010","image":"./image/nangua.png",name:"皮蛋廋肉粥配包子",sell:"5453",good:"100%",price:"19",yuanjia:"26",num:"0",disbool:true},
+      {goodsId:"101011","image":"./image/图层-5.png",name:"链子黑桃黑米粥",sell:"6563",good:"80%",price:"32",yuanjia:"46",num:"0",disbool:true},
+      {goodsId:"101012","image":"./image/图层-3.png",name:"雪梨银耳百合粥",sell:"2451",good:"90%",price:"20",yuanjia:"30",num:"0",disbool:true},
+      {goodsId:"101013","image":"./image/nangua.png",name:"南瓜粥",sell:"3448",good:"70%",price:"17",yuanjia:"20",num:"0",disbool:true},
       ];
 
-// sum计算总价
-      $scope.sum=0;
-      $scope.cart=[];
-      $scope.num=0;
-      // 计算商品个数
-      $scope.cc=0;
 
-       
-      $scope.add=function(goodsId,bool){
-       // console.log(goodsId)
-       $scope.cc++;
+      $scope.sum=0;// sum计算总价
+     
+      $scope.cart=[]; // 第一一个数组把去重的放在里面
+
+      // $scope.num=0;//计算单个有多少个商品
+      $scope.price=0;//计算单个商品价格
+     
+      $scope.cc=0; // 计算总商品个数
+
+       // alert(888)
+      $scope.set=function(goodsId,bool){
+
+  
        if($scope.cc>0){
-        $("#xuan").css('display','none');
+       
 
        }
+        
+        angular.forEach($scope.data,function(item,index){
+        //负负为正,把价格转成数字类型
+               // $scope.sum+=item.price*item.num;//全商品总价
+   
+        item.price=-(-item.price);
+        item.num=-(-item.num);
+
+           
        
 
+          if(goodsId===item.goodsId){
+              
+          
+            if(bool){ 
+             $scope.cc++;
+            $scope.sum+=item.price
+              item.num++;
+              console.log(item.num)
+          // $scope.cc+=item.num;
 
-        angular.forEach($scope.data,function(item,index){
-          item.cc=0;
-         
-          console.log(item.cc)
-          item.price=-(-(item.price)); 
-           
-           
+              $("#end").css({"background":"cyan"});
 
-          if(goodsId==item.goodsId){
-            console.log(item.goodsId)
-            item.num=0;
-            if(bool){
-            item.num++;
-              $scope.sum+=item.price*item.num;
+              // $scope.sum+=item.price*item.num;//全商品总价
                 
-                console.log($scope.sum)
+
+                // console.log($scope.sum)
+            }else{   
+             $scope.cc--;
+
+         // 这里设置当单个商品大于0时才执行减
+              if(item.num>0){
+                 $scope.sum-=item.price;//全商品总价
+                  // $scope.cc-=item.num;
+             
+
+              }
+
+
+              item.num--;
+             
+              // if($scope.sum<0){
+              // // $("#box>ul").css({"display":"none"});
+              // // console.log($("#box>ul"));
+              // console.log(999)
+              //   $scope.sum=0;
+              // }
+               
+              if($scope.cc<0){
+               $("#end").css({"background":"cyan"});
+                $scope.cc=0;
+              }
+
+             if(item.num<0){ 
+              // console.log($("#box>ul:eq("+this.index()+")"))
+              // $("#box>ul").css({"display":"none"});
+              item.num=0;
+              }
+           
+             
             }
+             // 去除相同商品
             if(item.num>0){
-              $scope.cart.push(item);
-              console.log($scope.cart)
+             $scope.item2=[];
+           
+              // console.log(item);
+              $scope.cart.push(item); 
+              // console.log($scope.cart);
+              for(var i=0,len=$scope.cart.length;i<len;i++){
+                // console.log(i)
+                if($scope.item2.indexOf($scope.cart[i])<0){
+                
+                  $scope.item2.push($scope.cart[i]); 
+
+                }
+             
+
+              } 
+              // console.log($scope.item2);
+
             }
+             // 设置满20起送
+              
+            
+            if($scope.sum>20){
+          
+               $("#xuan").css({"display":"none"});
+
+               $("#jiesua").css({"display":"block"});
+
+            }else{
+
+               $("#xuan").css({"display":"block"});
+
+               $("#jiesua").css({"display":"none"});
+
+            }
+            
 
             // fly函数
              var flyer = $('<img class="u-flyer" src="'+item.image+'">');      
@@ -89,7 +164,10 @@ var app=angular.module("myapp",['ngRoute'],RouteConfig);
                     }
                   });
           }
+
+
         })
+
       }
 
 
@@ -156,6 +234,8 @@ var app=angular.module("myapp",['ngRoute'],RouteConfig);
         }
     };
 });
+
+// 点击出现商品
 
 
 
